@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -146,6 +147,7 @@ class Switches extends StatefulWidget {
 
 class _SwitchesState extends State<Switches> {
   bool value = true;
+  bool value2 = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -158,6 +160,13 @@ class _SwitchesState extends State<Switches> {
               });
             }),
         Text('select value is $value'),
+        CupertinoSwitch(
+            value: value2,
+            onChanged: (val) {
+              setState(() {
+                value = val;
+              });
+            })
       ],
     );
   }
