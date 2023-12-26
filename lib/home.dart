@@ -23,7 +23,9 @@ class _HomeState extends State<Home> {
           Text('슬라이더'),
           Sliders(),
           Text('스위치'),
-          Switches()
+          Switches(),
+          Text('팝업메뉴'),
+          PopMenus(),
         ],
       )),
     );
@@ -167,6 +169,38 @@ class _SwitchesState extends State<Switches> {
                 value = val;
               });
             })
+      ],
+    );
+  }
+}
+
+class PopMenus extends StatefulWidget {
+  const PopMenus({super.key});
+
+  @override
+  State<PopMenus> createState() => _PopMenusState();
+}
+
+class _PopMenusState extends State<PopMenus> {
+  List<String> values = ['android', 'ios'];
+  String selectedValue = 'android';
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        PopupMenuButton(
+          itemBuilder: (context) {
+            return values
+                .map((value) => PopupMenuItem(value: value, child: Text(value)))
+                .toList(); // map은 iterable이라서 List로 만들어줘야
+          },
+          onSelected: (val) {
+            setState(() {
+              selectedValue = val;
+            });
+          },
+        ),
+        Text('선택된 값은 $selectedValue'),
       ],
     );
   }
